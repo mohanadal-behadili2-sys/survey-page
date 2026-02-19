@@ -17,16 +17,37 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
         }
 
         h1 {
             text-align: center;
         }
 
-        iframe {
+        .iframe-wrapper {
+            position: relative;
             width: 100%;
             height: 550px;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 600px; /* Slightly taller to show more */
             border: none;
+            margin-top: -50px; /* Shift up to hide footer */
+        }
+
+        /* Optional: cover with a white bar */
+        .footer-cover {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: white;
+            z-index: 10;
+            border-top: 1px solid #eee;
         }
     </style>
 </head>
@@ -35,11 +56,24 @@
 <div class="container">
     <h1>Customer Feedback Survey</h1>
 
-    <!-- Paste your Microsoft Forms iframe below -->
-    <iframe src="https://forms.office.com/Pages/ResponsePage.aspx?id=fDBSAE1W3E-YeVpEbPbHRv59fwnNiwZLu6HoLLq5Rw5UMUIwOVhYSk85WTAxT1NIVUwxRUtLRVBNMy4u"></iframe>
+    <div class="iframe-wrapper">
+        <iframe src="https://forms.office.com/Pages/ResponsePage.aspx?id=fDBSAE1W3E-YeVpEbPbHRv59fwnNiwZLu6HoLLq5Rw5UMUIwOVhYSk85WTAxT1NIVUwxRUtLRVBNMy4u"></iframe>
+        <div class="footer-cover"></div> <!-- Covers the footer -->
+    </div>
 
 </div>
 
+<!-- Optional JavaScript to attempt hiding (won't work due to CORS) -->
+<script>
+    // THIS WON'T WORK - cross-origin restriction
+    try {
+        const iframe = document.querySelector('iframe');
+        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        // Can't access this due to same-origin policy
+    } catch(e) {
+        console.log('Cannot access iframe content:', e);
+    }
+</script>
+
 </body>
 </html>
-
